@@ -61,6 +61,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\NotesAdapter.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="NotesDetailActivity.cs" />

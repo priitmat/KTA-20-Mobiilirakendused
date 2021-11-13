@@ -36,5 +36,10 @@ namespace NotesApp.Services
         {
             return _sqlConnection.Table<Note>().ToList();
         }
+
+        public Note GetNote(int id)
+        {
+            return _sqlConnection.Table<Note>().Where(x => x.Id == id).FirstOrDefault();
+        }
     }
 }
