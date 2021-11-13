@@ -17,6 +17,7 @@ namespace NotesApp
         static public SqlService SqlService = new SqlService();
         ListView _listView;
         List<Note> _notes;
+        NotesAdapter _notesAdapter;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -25,11 +26,14 @@ namespace NotesApp
             SetContentView(Resource.Layout.activity_main);
 
             _listView = FindViewById<ListView>(Resource.Id.notesListView);
-            _listView.ItemClick += _listView_ItemClick; 
-            //DB            
-
             var addButton = FindViewById<Button>(Resource.Id.addButton);
+            
+            _listView.ItemClick += _listView_ItemClick;                              
             addButton.Click += AddButton_Click;
+
+            _notes = SqlService.GetAllNotes();
+            _notesAdapter =  new NotesAdapter(this, _notes);
+            _listView.Adapter = _notesAdapter;
         }
 
         private void _listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -44,8 +48,7 @@ namespace NotesApp
         {
             base.OnResume();
             _notes = SqlService.GetAllNotes();
-            _listView.Adapter = null;
-            _listView.Adapter = new NotesAdapter(this, _notes);
+            _notesAdapter.UpdateData(_notes);
         }
 
         private void AddButton_Click(object sender, System.EventArgs e)

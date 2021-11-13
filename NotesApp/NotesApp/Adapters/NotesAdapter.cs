@@ -1,14 +1,8 @@
 ﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using NotesApp.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace NotesApp.Adapters
 {
@@ -21,7 +15,7 @@ namespace NotesApp.Adapters
         {
             _items = items;
             _context = context;
-        }
+        }        
 
         public override Note this[int position] 
         {
@@ -45,6 +39,11 @@ namespace NotesApp.Adapters
                 view = _context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
             view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = _items[position].Heading;
             return view;
+        }
+
+        public void UpdateData(List<Note> items)
+        {
+            _items = items;
         }
     }
 }
