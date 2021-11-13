@@ -6,7 +6,7 @@ using AndroidX.AppCompat.App;
 
 namespace FirstApp
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
         TextView firstText;
