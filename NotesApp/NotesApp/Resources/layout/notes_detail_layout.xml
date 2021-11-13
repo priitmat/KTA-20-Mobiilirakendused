@@ -14,8 +14,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/contentEditText" />
     <Button
-        android:text="Save"
+        android:text="@string/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/saveButton" />
+    <Button
+        android:text="@string/delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteButton" />
 </LinearLayout>

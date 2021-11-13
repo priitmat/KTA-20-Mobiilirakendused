@@ -36,6 +36,7 @@ namespace NotesApp
             _listView.Adapter = _notesAdapter;
         }
 
+     
         private void _listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var intent = new Intent(this, typeof(NotesDetailActivity));
@@ -48,7 +49,10 @@ namespace NotesApp
         {
             base.OnResume();
             _notes = SqlService.GetAllNotes();
-            _notesAdapter.UpdateData(_notes);
+            RunOnUiThread(() => {
+                _notesAdapter.UpdateData(_notes);
+                _notesAdapter.NotifyDataSetChanged();
+            });            
         }
 
         private void AddButton_Click(object sender, System.EventArgs e)

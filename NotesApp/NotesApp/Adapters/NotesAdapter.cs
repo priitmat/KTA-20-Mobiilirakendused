@@ -36,8 +36,9 @@ namespace NotesApp.Adapters
         {
             View view = convertView;
             if (view == null)
-                view = _context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = _items[position].Heading;
+                view = _context.LayoutInflater.Inflate(Resource.Layout.note_row_layout, null);
+            view.FindViewById<TextView>(Resource.Id.headingTextView).Text = _items[position].Heading;
+            view.FindViewById<TextView>(Resource.Id.contentTextView).Text = _items[position].Content;
             return view;
         }
 

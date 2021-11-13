@@ -23,17 +23,28 @@ namespace NotesApp
             _headingEditText = FindViewById<EditText>(Resource.Id.headingEditText);
             _contentEditText = FindViewById<EditText>(Resource.Id.contentEditText);
             var saveButton = FindViewById<Button>(Resource.Id.saveButton);
+            var deleteButton = FindViewById<Button>(Resource.Id.deleteButton);
 
             saveButton.Click += SaveButton_Click;
+            deleteButton.Click += DeleteButton_Click;
+            deleteButton.Visibility = Android.Views.ViewStates.Invisible;
 
             var mode = Intent.GetStringExtra("mode");
             if(mode == "edit")
             {
+                deleteButton.Visibility = Android.Views.ViewStates.Visible;
                 var id = Intent.GetIntExtra("id", 0);
                 _note = MainActivity.SqlService.GetNote(id);
                 _headingEditText.Text = _note.Heading;
                 _contentEditText.Text = _note.Content;
             }
+            
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            MainActivity.SqlService.DeleteData(_note);
+            Finish();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)

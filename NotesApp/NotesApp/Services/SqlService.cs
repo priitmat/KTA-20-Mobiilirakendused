@@ -41,5 +41,10 @@ namespace NotesApp.Services
         {
             return _sqlConnection.Table<Note>().Where(x => x.Id == id).FirstOrDefault();
         }
+
+        public void DeleteData(Note note)
+        {
+            _sqlConnection.Delete(note);
+        }
     }
 }
