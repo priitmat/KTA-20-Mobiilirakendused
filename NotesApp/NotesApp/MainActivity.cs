@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using NotesApp.Adapters;
@@ -24,6 +25,8 @@ namespace NotesApp
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+            SupportActionBar.Title = "Xamarin ";
+            
 
             _listView = FindViewById<ListView>(Resource.Id.notesListView);
             var addButton = FindViewById<Button>(Resource.Id.addButton);
@@ -36,7 +39,29 @@ namespace NotesApp
             _listView.Adapter = _notesAdapter;
         }
 
-     
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            // set the menu layout on Main Activity  
+            MenuInflater.Inflate(Resource.Menu.mainmenu, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.menuItem1:
+                    {
+                        // add your code  
+                        return true;
+                    }
+            
+
+            }
+
+            return base.OnOptionsItemSelected(item);
+        }
+
         private void _listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var intent = new Intent(this, typeof(NotesDetailActivity));
